@@ -1,0 +1,24 @@
+name: Compile
+
+on:
+  push:
+    branch: [main]
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: action checkout
+        uses: actions/checkout@v4
+
+      - name: repo python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: repo install
+        run: pip install pyinstaller
+
+      - name: repo onefile
+        run: pyinstaller --onefile conprova_desplegaments.py
